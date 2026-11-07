@@ -172,8 +172,6 @@ The application automatically initializes a default administrator account when t
 
 Log in using these credentials to access the Administrator Dashboard.
 
-**Important:** These are demonstration credentials. Change or remove the default administrator setup before any real deployment.
-
 ---
 
 ## 7. Data Storage
@@ -219,7 +217,6 @@ It is not suitable for production authentication because:
 
 A production version should use a secure backend, password hashing, server-side authentication, database storage, and proper authorization.
 
-Do not use real or sensitive passwords with this demonstration application.
 
 ---
 
