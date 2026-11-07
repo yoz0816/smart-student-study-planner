@@ -73,7 +73,6 @@ smart-student-study-planner/
 │   └── responsive.css
 │
 ├── js/
-│   ├── app.js
 │   ├── storage.js
 │   ├── auth.js
 │   ├── dashboard.js
