@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Log in to your StudyFlow student account.">
+    <title>Login | StudyFlow</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <script src="../js/storage.js" defer></script>
+    <script src="../js/auth.js" defer></script>
+</head>
+<body class="auth-page">
+
+    <header class="auth-header container">
+        <a href="../index.html" class="brand">
+            <span class="brand-icon">S</span>
+            <span>StudyFlow</span>
+        </a>
+
+        <a href="../index.html" class="back-link">← Back to home</a>
+    </header>
+
+    <main class="auth-main container">
+        <section class="auth-card login-card">
+            <div class="auth-heading">
+                <div class="auth-symbol">✦</div>
+                <span class="section-label">WELCOME BACK</span>
+
+                <h1>Good to see <span class="text-accent">you.</span></h1>
+                <p>
+                    Log in to continue organizing your
+                    academic journey.
+                </p>
+            </div>
+
+            <div id="auth-message" class="auth-message" role="status" aria-live="polite"></div>
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">Username or email address</label>
+                    <input
+                        type="text"
+                        id="login-email"
+                        name="identifier"
+                        placeholder="admin or you@example.com"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input
+                        type="password"
+                        id="login-password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-primary auth-submit">
+                    Log In <span>→</span>
+                </button>
+
+            </form>
+
+            <div class="auth-divider">
+                <span>NEW TO STUDYFLOW?</span>
+            </div>
+
+            <p class="auth-switch">
+                Don't have an account?
+                <a href="register.html">Create one</a>
+            </p>
+
+        </section>
+
+        <p class="auth-footer-note">
+            Your academic journey continues here.
+        </p>
+
+    </main>
+
+</body>
+</html>
