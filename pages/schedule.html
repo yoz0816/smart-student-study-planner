@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Schedule | StudyFlow</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="courses-page schedule-page">
+
+    <div class="dashboard-layout">
+
+        <aside class="sidebar">
+            <a href="../index.html" class="sidebar-brand">
+                <span class="brand-mark">S</span>
+                <span>StudyFlow</span>
+            </a>
+
+            <div class="sidebar-section-label">WORKSPACE</div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link">
+                    <span class="nav-icon">▦</span>
+                    Dashboard
+                </a>
+                <a href="courses.html" class="sidebar-link">
+                    <span class="nav-icon">▤</span>
+                    My Courses
+                </a>
+                <a href="tasks.html" class="sidebar-link">
+                    <span class="nav-icon">✓</span>
+                    Tasks
+                </a>
+                <a href="schedule.html" class="sidebar-link active">
+                    <span class="nav-icon">◷</span>
+                    Study Schedule
+                </a>
+                <a href="progress.html" class="sidebar-link">
+                    <span class="nav-icon">▥</span>
+                    Progress
+                </a>
+                <a href="reminders.html" class="sidebar-link">
+                    <span class="nav-icon">♧</span>
+                    Reminders
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-user">
+                    <div class="user-avatar" id="user-avatar">S</div>
+                    <div class="sidebar-user-info">
+                        <strong id="sidebar-user-name">Student</strong>
+                        <span>Student account</span>
+                    </div>
+                </div>
+                <button type="button" class="sidebar-logout" id="logout-button">
+                    ↪ Log out
+                </button>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+
+            <header class="dashboard-topbar">
+                <div>
+                    <p class="topbar-label">STUDENT WORKSPACE</p>
+                    <h1>Study Schedule</h1>
+                </div>
+                <button type="button" class="btn btn-primary" id="add-session-button">
+                    + Plan a session
+                </button>
+            </header>
+
+            <section class="schedule-intro">
+                <h2>Make time for learning</h2>
+                <p>Plan focused study sessions and build a consistent study routine.</p>
+            </section>
+
+            <section class="schedule-summary-grid">
+                <article class="schedule-summary-card">
+                    <span class="schedule-summary-label">TOTAL SESSIONS</span>
+                    <strong id="total-sessions">0</strong>
+                    <span class="schedule-summary-note">Sessions in your schedule</span>
+                </article>
+
+                <article class="schedule-summary-card">
+                    <span class="schedule-summary-label">PLANNED STUDY TIME</span>
+                    <strong id="total-study-hours">0h</strong>
+                    <span class="schedule-summary-note">Total scheduled duration</span>
+                </article>
+
+                <article class="schedule-summary-card">
+                    <span class="schedule-summary-label">UPCOMING</span>
+                    <strong id="upcoming-sessions">0</strong>
+                    <span class="schedule-summary-note">Sessions not yet finished</span>
+                </article>
+            </section>
+
+            <section class="schedule-form-panel" id="schedule-form-panel" hidden>
+                <div class="schedule-form-heading">
+                    <div>
+                        <h2 id="schedule-form-title">Plan a study session</h2>
+                        <p>Choose a course, date, and time for your session.</p>
+                    </div>
+                    <button type="button" class="icon-button" id="close-schedule-form"
+                            aria-label="Close form">×</button>
+                </div>
+
+                <form id="schedule-form">
+                    <input type="hidden" id="session-id">
+
+                    <div class="schedule-form-grid">
+                        <div class="schedule-field">
+                            <label for="session-topic">Study topic *</label>
+                            <input type="text" id="session-topic"
+                                    placeholder="e.g. Practice linked lists"
+                                    maxlength="120" required>
+                        </div>
+
+                        <div class="schedule-field">
+                            <label for="session-course">Course *</label>
+                            <select id="session-course" required>
+                                <option value="">Select a course</option>
+                            </select>
+                        </div>
+
+                        <div class="schedule-field">
+                            <label for="session-date">Study date *</label>
+                            <input type="date" id="session-date" required>
+                        </div>
+
+                        <div class="schedule-field">
+                            <label for="session-status">Session status</label>
+                            <select id="session-status">
+                                <option value="Planned">Planned</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Skipped">Skipped</option>
+                            </select>
+                        </div>
+
+                        <div class="schedule-field">
+                            <label for="session-start">Start time *</label>
+                            <input type="time" id="session-start" required>
+                        </div>
+
+                        <div class="schedule-field">
+                            <label for="session-end">End time *</label>
+                            <input type="time" id="session-end" required>
+                        </div>
+
+                        <div class="schedule-field schedule-field-full">
+                            <label for="session-notes">Notes</label>
+                            <textarea id="session-notes" rows="3"
+                                        maxlength="1000"
+                                        placeholder="What do you want to achieve during this session?"></textarea>
+                        </div>
+                    </div>
+
+                    <p class="schedule-form-message" id="schedule-form-message"
+                        role="alert"></p>
+
+                    <div class="schedule-form-actions">
+                        <button type="button" class="btn btn-ghost"
+                                id="cancel-schedule-form">Cancel</button>
+                        <button type="submit" class="btn btn-primary"
+                                id="save-session-button">Save session</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="schedule-content">
+                <div class="schedule-content-heading">
+                    <div>
+                        <h2>Your study sessions</h2>
+                        <p>Choose a date to see your planned sessions.</p>
+                    </div>
+
+                    <div class="schedule-date-control">
+                        <label for="schedule-date-filter">View date</label>
+                        <input type="date" id="schedule-date-filter">
+                    </div>
+                </div>
+
+                <div class="schedule-day-heading">
+                    <div>
+                        <span class="schedule-day-label">SELECTED DAY</span>
+                        <h3 id="selected-day-title">Today's sessions</h3>
+                    </div>
+                    <button type="button" class="schedule-today-button"
+                            id="today-button">Today</button>
+                </div>
+
+                <div class="schedule-session-list" id="schedule-session-list"></div>
+
+                <div class="schedule-empty-state" id="schedule-empty-state">
+                    <div class="schedule-empty-icon">◷</div>
+                    <h3>No sessions planned</h3>
+                    <p>There are no study sessions scheduled for this date.</p>
+                    <button type="button" class="btn btn-primary"
+                            id="empty-add-session-button">+ Plan a session</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../js/storage.js" defer></script>
+    <script src="../js/schedule.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks | StudyFlow</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="courses-page tasks-page">
+
+    <div class="dashboard-layout">
+
+        <aside class="sidebar">
+            <a href="../index.html" class="sidebar-brand">
+                <span class="brand-mark">S</span>
+                <span>StudyFlow</span>
+            </a>
+
+            <div class="sidebar-section-label">WORKSPACE</div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link">
+                    <span class="nav-icon">▦</span>
+                    Dashboard
+                </a>
+                <a href="courses.html" class="sidebar-link">
+                    <span class="nav-icon">▤</span>
+                    My Courses
+                </a>
+                <a href="tasks.html" class="sidebar-link active">
+                    <span class="nav-icon">✓</span>
+                    Tasks
+                </a>
+                <a href="schedule.html" class="sidebar-link">
+                    <span class="nav-icon">◷</span>
+                    Study Schedule
+                </a>
+                <a href="progress.html" class="sidebar-link">
+                    <span class="nav-icon">▥</span>
+                    Progress
+                </a>
+                <a href="reminders.html" class="sidebar-link">
+                    <span class="nav-icon">♧</span>
+                    Reminders
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-user">
+                    <div class="user-avatar" id="user-avatar">S</div>
+                    <div class="sidebar-user-info">
+                        <strong id="sidebar-user-name">Student</strong>
+                        <span>Student account</span>
+                    </div>
+                </div>
+                <button type="button" class="sidebar-logout" id="logout-button">
+                    ↪ Log out
+                </button>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+
+            <header class="dashboard-topbar">
+                <div>
+                    <p class="topbar-label">STUDENT WORKSPACE</p>
+                    <h1>My Tasks</h1>
+                </div>
+                <button type="button" class="btn btn-primary" id="add-task-button">
+                    + Add task
+                </button>
+            </header>
+
+            <section class="tasks-intro">
+                <h2>Stay on top of your work</h2>
+                <p>Organize assignments, projects, exams, and deadlines in one place.</p>
+            </section>
+
+            <section class="task-stat-grid">
+                <article class="task-stat-card">
+                    <span class="task-stat-label">TOTAL TASKS</span>
+                    <strong id="total-tasks">0</strong>
+                    <span class="task-stat-note">All your academic tasks</span>
+                </article>
+                <article class="task-stat-card">
+                    <span class="task-stat-label">PENDING</span>
+                    <strong id="pending-tasks">0</strong>
+                    <span class="task-stat-note">Waiting to be completed</span>
+                </article>
+                <article class="task-stat-card">
+                    <span class="task-stat-label">IN PROGRESS</span>
+                    <strong id="progress-tasks">0</strong>
+                    <span class="task-stat-note">Currently being worked on</span>
+                </article>
+                <article class="task-stat-card">
+                    <span class="task-stat-label">COMPLETED</span>
+                    <strong id="completed-tasks">0</strong>
+                    <span class="task-stat-note">Successfully finished</span>
+                </article>
+            </section>
+
+            <section class="task-form-panel" id="task-form-panel" hidden>
+                <div class="task-form-heading">
+                    <div>
+                        <h2 id="task-form-title">Create a new task</h2>
+                        <p>Add details and choose when it needs to be completed.</p>
+                    </div>
+                    <button type="button" class="icon-button" id="close-task-form"
+                            aria-label="Close form">×</button>
+                </div>
+
+                <form id="task-form">
+                    <input type="hidden" id="task-id">
+
+                    <div class="task-form-grid">
+                        <div class="task-field">
+                            <label for="task-title">Task title *</label>
+                            <input type="text" id="task-title"
+                                    placeholder="e.g. Complete linked list assignment"
+                                    maxlength="120" required>
+                        </div>
+
+                        <div class="task-field">
+                            <label for="task-course">Course *</label>
+                            <select id="task-course" required>
+                                <option value="">Select a course</option>
+                            </select>
+                        </div>
+
+                        <div class="task-field">
+                            <label for="task-type">Task type</label>
+                            <select id="task-type">
+                                <option value="Assignment">Assignment</option>
+                                <option value="Homework">Homework</option>
+                                <option value="Project">Project</option>
+                                <option value="Exam">Exam</option>
+                                <option value="Reading">Reading</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="task-field">
+                            <label for="task-priority">Priority</label>
+                            <select id="task-priority">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+
+                        <div class="task-field">
+                            <label for="task-due-date">Due date *</label>
+                            <input type="date" id="task-due-date" required>
+                        </div>
+
+                        <div class="task-field">
+                            <label for="task-status">Status</label>
+                            <select id="task-status">
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+
+                        <div class="task-field task-field-full">
+                            <label for="task-description">Description</label>
+                            <textarea id="task-description" rows="3"
+                                        maxlength="1000"
+                                        placeholder="Add instructions or notes about this task..."></textarea>
+                        </div>
+                    </div>
+
+                    <p class="task-form-message" id="task-form-message" role="alert"></p>
+
+                    <div class="task-form-actions">
+                        <button type="button" class="btn btn-ghost"
+                                id="cancel-task-form">Cancel</button>
+                        <button type="submit" class="btn btn-primary"
+                                id="save-task-button">Save task</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="tasks-list-section">
+                <div class="tasks-list-heading">
+                    <div>
+                        <h2>All tasks</h2>
+                        <p id="tasks-count-label">0 tasks</p>
+                    </div>
+
+                    <div class="task-search">
+                        <span>⌕</span>
+                        <input type="search" id="task-search"
+                                placeholder="Search tasks..."
+                                aria-label="Search tasks">
+                    </div>
+                </div>
+
+                <div class="task-filter-bar">
+                    <div class="task-filter">
+                        <label for="status-filter">Status</label>
+                        <select id="status-filter">
+                            <option value="All">All statuses</option>
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+
+                    <div class="task-filter">
+                        <label for="priority-filter">Priority</label>
+                        <select id="priority-filter">
+                            <option value="All">All priorities</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+
+                    <div class="task-filter">
+                        <label for="course-filter">Course</label>
+                        <select id="course-filter">
+                            <option value="All">All courses</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="task-list" id="task-list"></div>
+
+                <div class="tasks-empty-state" id="tasks-empty-state">
+                    <div class="task-empty-icon">✓</div>
+                    <h3>No tasks yet</h3>
+                    <p>Create your first task and start organizing your academic work.</p>
+                    <button type="button" class="btn btn-primary"
+                            id="empty-add-task-button">+ Create your first task</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../js/storage.js" defer></script>
+    <script src="../js/tasks.js" defer></script>
+</body>
+</html>

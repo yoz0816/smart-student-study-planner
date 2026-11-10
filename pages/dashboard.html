@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your personal StudyFlow student dashboard.">
+    <title>Dashboard | StudyFlow</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <script src="../js/storage.js" defer></script>
+    <script src="../js/dashboard.js" defer></script>
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+
+        <aside class="sidebar" id="sidebar">
+            <a href="../index.html" class="sidebar-brand">
+                <span class="brand-mark">S</span>
+                <span>Study<span class="brand-accent">Flow</span></span>
+            </a>
+
+            <div class="sidebar-section">
+                <p class="sidebar-label">WORKSPACE</p>
+
+                <nav class="sidebar-nav">
+                    <a href="dashboard.html" class="nav-link active">
+                        <span class="nav-icon">⌂</span>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <a href="courses.html" class="nav-link">
+                        <span class="nav-icon">▤</span>
+                        <span>My Courses</span>
+                    </a>
+
+                    <a href="tasks.html" class="nav-link">
+                        <span class="nav-icon">✓</span>
+                        <span>Tasks & Deadlines</span>
+                    </a>
+
+                    <a href="schedule.html" class="nav-link">
+                        <span class="nav-icon">▦</span>
+                        <span>Study Schedule</span>
+                    </a>
+
+                    <a href="progress.html" class="nav-link">
+                        <span class="nav-icon">↗</span>
+                        <span>My Progress</span>
+                    </a>
+
+                    <a href="reminders.html" class="nav-link">
+                        <span class="nav-icon">♧</span>
+                        <span>Reminders</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-help">
+                    <div class="help-icon">✦</div>
+                    <h3>Stay consistent!</h3>
+                    <p>Small study sessions can lead to big achievements.</p>
+                </div>
+
+                <button class="logout-button" id="logout-button" type="button">
+                    <span class="nav-icon">↪</span>
+                    <span>Log out</span>
+                </button>
+            </div>
+        </aside>
+
+
+        <main class="dashboard-main">
+
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menu-toggle"
+                            type="button" aria-label="Toggle navigation">
+                        ☰
+                    </button>
+
+                    <div>
+                        <p class="topbar-eyebrow">STUDENT WORKSPACE</p>
+                        <p class="topbar-date" id="current-date">Loading date...</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="reminders.html" class="notification-button"
+                        aria-label="View reminders">♧</a>
+
+                    <div class="profile-mini">
+                        <div class="profile-avatar" id="profile-avatar">S</div>
+                        <div class="profile-info">
+                            <strong id="profile-name">Student</strong>
+                            <span>Student account</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+
+                <section class="welcome-section">
+                    <div>
+                        <p class="section-eyebrow">YOUR LEARNING SPACE</p>
+                        <h1>Welcome back, <span id="welcome-name">Student</span>!</h1>
+                        <p class="welcome-description">
+                            Ready to make progress? Let's organize your learning today.
+                        </p>
+                    </div>
+
+                    <div class="welcome-decoration">
+                        <span class="decoration-star">✦</span>
+                        <span class="decoration-circle"></span>
+                        <span class="decoration-line"></span>
+                    </div>
+                </section>
+
+
+                <section class="overview-section">
+                    <div class="section-heading">
+                        <div>
+                            <h2>Your Overview</h2>
+                            <p>A quick look at your study activity.</p>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-icon mint">▤</span>
+                                <span class="stat-caption">LEARNING</span>
+                            </div>
+                            <h3 id="total-courses">0</h3>
+                            <p>Active Courses</p>
+                            <span class="stat-note">Courses you're studying</span>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-icon purple">✓</span>
+                                <span class="stat-caption">YOUR WORK</span>
+                            </div>
+                            <h3 id="total-tasks">0</h3>
+                            <p>Total Tasks</p>
+                            <span class="stat-note">Tasks you've created</span>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-icon orange">✦</span>
+                                <span class="stat-caption">ACHIEVEMENT</span>
+                            </div>
+                            <h3 id="completed-tasks">0</h3>
+                            <p>Completed Tasks</p>
+                            <span class="stat-note">Tasks you've finished</span>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-icon blue">◷</span>
+                                <span class="stat-caption">STUDY TIME</span>
+                            </div>
+                            <h3 id="study-hours">0h</h3>
+                            <p>Study Hours</p>
+                            <span class="stat-note">Recorded study time</span>
+                        </article>
+
+                    </div>
+                </section>
+
+                <div class="dashboard-grid">
+
+                    <section class="dashboard-panel today-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h2>Today's Study Tasks</h2>
+                                <p>Keep your focus on what matters.</p>
+                            </div>
+                            <a href="tasks.html" class="panel-link">View all →</a>
+                        </div>
+
+                        <div class="empty-state" id="today-empty">
+                            <div class="empty-state-icon">✓</div>
+                            <h3>No tasks for today</h3>
+                            <p>Your daily study tasks will appear here.</p>
+                            <a href="tasks.html" class="btn btn-primary">
+                                + Add a task
+                            </a>
+                        </div>
+
+                        <div class="task-list" id="today-task-list"></div>
+                    </section>
+
+                    <section class="dashboard-panel deadlines-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h2>Upcoming Deadlines</h2>
+                                <p>Stay ahead of your assignments.</p>
+                            </div>
+                            <a href="tasks.html" class="panel-link">View all →</a>
+                        </div>
+
+                        <div class="empty-state compact-empty" id="deadlines-empty">
+                            <div class="empty-state-icon">◷</div>
+                            <h3>No upcoming deadlines</h3>
+                            <p>You're all clear for now.</p>
+                        </div>
+
+                        <div class="deadline-list" id="deadline-list"></div>
+                    </section>
+
+                    <section class="dashboard-panel progress-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h2>Weekly Study Activity</h2>
+                                <p>Your study consistency this week.</p>
+                            </div>
+                            <a href="progress.html" class="panel-link">Details →</a>
+                        </div>
+
+                        <div class="weekly-summary">
+                            <div>
+                                <h3 id="weekly-hours">0h</h3>
+                                <span>Hours studied this week</span>
+                            </div>
+                            <span class="weekly-badge">THIS WEEK</span>
+                        </div>
+
+                        <div class="weekly-chart" id="weekly-chart">
+                            <div class="chart-column">
+                                <div class="chart-track"><span style="height:0%"></span></div>
+                                <span>Mon</span>
+                            </div>
+                            <div class="chart-column">
+                                <div class="chart-track"><span style="height:0%"></span></div>
+                                <span>Tue</span>
+                            </div>
+                            <div class="chart-column">
+                                <div class="chart-track"><span style="height:0%"></span></div>
+                                <span>Wed</span>
+                            </div>
+                            <div class="chart-column">
+                                <div class="chart-track"><span style="height:0%"></span></div>
+                                <span>Thu</span>
+                            </div>
+                            <div class="chart-column">
+                                <div class="chart-track"><span style="height:0%"></span></div>
+                                <span>Fri</span>
+                            </div>
+                            <div class="chart-column">
+                                <div class="chart-track"><span style="height:0%"></span></div>
+                                <span>Sat</span>
+                            </div>
+                            <div class="chart-column">
+                                <div class="chart-track"><span style="height:0%"></span></div>
+                                <span>Sun</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="dashboard-panel quick-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h2>Quick Actions</h2>
+                                <p>Jump straight into your next activity.</p>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions">
+                            <a href="courses.html" class="quick-action">
+                                <span class="quick-action-icon mint">＋</span>
+                                <span>
+                                    <strong>Add a Course</strong>
+                                    <small>Organize your subjects</small>
+                                </span>
+                                <span class="quick-arrow">→</span>
+                            </a>
+
+                            <a href="tasks.html" class="quick-action">
+                                <span class="quick-action-icon purple">✓</span>
+                                <span>
+                                    <strong>Create a Task</strong>
+                                    <small>Track your assignments</small>
+                                </span>
+                                <span class="quick-arrow">→</span>
+                            </a>
+
+                            <a href="schedule.html" class="quick-action">
+                                <span class="quick-action-icon orange">▦</span>
+                                <span>
+                                    <strong>Plan Study Time</strong>
+                                    <small>Build your study routine</small>
+                                </span>
+                                <span class="quick-arrow">→</span>
+                            </a>
+                        </div>
+                    </section>
+
+                </div>
+
+                <footer class="dashboard-footer">
+                    <p>© 2026 StudyFlow. Make every study session count.</p>
+                    <span>Built for better learning.</span>
+                </footer>
+
+            </div>
+        </main>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+</body>
+</html>

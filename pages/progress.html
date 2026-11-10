@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracking | StudyFlow</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body class="courses-page progress-page">
+
+    <div class="dashboard-layout">
+
+        <aside class="sidebar">
+            <a href="../index.html" class="sidebar-brand">
+                <span class="brand-mark">S</span>
+                <span>StudyFlow</span>
+            </a>
+
+            <div class="sidebar-section-label">WORKSPACE</div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link">
+                    <span class="nav-icon">▦</span>
+                    Dashboard
+                </a>
+
+                <a href="courses.html" class="sidebar-link">
+                    <span class="nav-icon">▤</span>
+                    My Courses
+                </a>
+
+                <a href="tasks.html" class="sidebar-link">
+                    <span class="nav-icon">✓</span>
+                    Tasks
+                </a>
+
+                <a href="schedule.html" class="sidebar-link">
+                    <span class="nav-icon">◷</span>
+                    Study Schedule
+                </a>
+
+                <a href="progress.html" class="sidebar-link active">
+                    <span class="nav-icon">▥</span>
+                    Progress
+                </a>
+
+                <a href="reminders.html" class="sidebar-link">
+                    <span class="nav-icon">♧</span>
+                    Reminders
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-user">
+                    <div class="user-avatar" id="user-avatar">S</div>
+
+                    <div class="sidebar-user-info">
+                        <strong id="sidebar-user-name">Student</strong>
+                        <span>Student account</span>
+                    </div>
+                </div>
+
+                <button type="button" class="sidebar-logout" id="logout-button">
+                    ↪ Log out
+                </button>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+
+            <header class="dashboard-topbar">
+                <div>
+                    <p class="topbar-label">STUDENT WORKSPACE</p>
+                    <h1>Progress Tracking</h1>
+                </div>
+            </header>
+
+            <section class="progress-intro">
+                <h2>Track your academic growth</h2>
+                <p>
+                    Understand your study habits, monitor completed tasks,
+                    and see how far you've come.
+                </p>
+            </section>
+
+            <section class="progress-summary-grid">
+
+                <article class="progress-summary-card">
+                    <span class="progress-summary-label">TOTAL COURSES</span>
+                    <strong id="progress-total-courses">0</strong>
+                    <span class="progress-summary-note">Courses you're studying</span>
+                </article>
+
+                <article class="progress-summary-card">
+                    <span class="progress-summary-label">TOTAL TASKS</span>
+                    <strong id="progress-total-tasks">0</strong>
+                    <span class="progress-summary-note">Tasks across all courses</span>
+                </article>
+
+                <article class="progress-summary-card">
+                    <span class="progress-summary-label">COMPLETED TASKS</span>
+                    <strong id="progress-completed-tasks">0</strong>
+                    <span class="progress-summary-note">Tasks marked completed</span>
+                </article>
+
+                <article class="progress-summary-card">
+                    <span class="progress-summary-label">COMPLETION RATE</span>
+                    <strong id="progress-completion-rate">0%</strong>
+                    <span class="progress-summary-note">Overall task completion</span>
+                </article>
+
+            </section>
+
+            <section class="progress-overview-grid">
+
+                <article class="progress-panel">
+                    <div class="progress-section-heading">
+                        <div>
+                            <h2>Overall Task Progress</h2>
+                            <p>Your completed work compared with all recorded tasks.</p>
+                        </div>
+                    </div>
+
+                    <div class="progress-overall-content">
+
+                        <div
+                            class="progress-ring"
+                            id="overall-progress-ring"
+                            role="img"
+                            aria-label="Overall task completion: 0 percent"
+                        >
+                            <div class="progress-ring-inner">
+                                <strong id="overall-progress-percent">0%</strong>
+                                <span>Completed</span>
+                            </div>
+                        </div>
+
+                        <div class="progress-breakdown">
+
+                            <div class="progress-breakdown-item">
+                                <span>
+                                    <i class="progress-dot completed"></i>
+                                    Completed
+                                </span>
+                                <strong id="breakdown-completed">0</strong>
+                            </div>
+
+                            <div class="progress-breakdown-item">
+                                <span>
+                                    <i class="progress-dot in-progress"></i>
+                                    In Progress
+                                </span>
+                                <strong id="breakdown-in-progress">0</strong>
+                            </div>
+
+                            <div class="progress-breakdown-item">
+                                <span>
+                                    <i class="progress-dot pending"></i>
+                                    Pending
+                                </span>
+                                <strong id="breakdown-pending">0</strong>
+                            </div>
+
+                        </div>
+                    </div>
+                </article>
+
+                <article class="progress-panel">
+                    <div class="progress-section-heading">
+                        <div>
+                            <h2>Completed Study Time</h2>
+                            <p>Time spent in completed study sessions.</p>
+                        </div>
+                        <span class="progress-time-icon">◷</span>
+                    </div>
+
+                    <div class="progress-time-content">
+                        <strong id="progress-study-hours">0h 0m</strong>
+                        <span id="progress-study-minutes">0 minutes recorded</span>
+                    </div>
+
+                    <div class="progress-time-divider"></div>
+
+                    <div class="progress-time-footer">
+                        <span>Completed sessions</span>
+                        <strong id="progress-completed-sessions">0</strong>
+                    </div>
+                </article>
+
+            </section>
+
+            <section class="progress-panel progress-course-section">
+
+                <div class="progress-section-heading">
+                    <div>
+                        <h2>Progress by Course</h2>
+                        <p>Monitor your task completion in each course.</p>
+                    </div>
+
+                    <span class="progress-section-count" id="course-progress-count">
+                        0 courses
+                    </span>
+                </div>
+
+                <div id="course-progress-list" class="progress-course-list"></div>
+
+                <div id="course-progress-empty" class="progress-empty-state" hidden>
+                    <div class="progress-empty-icon">▤</div>
+                    <h3>No courses yet</h3>
+                    <p>
+                        Add courses and tasks to start tracking your academic progress.
+                    </p>
+                    <a href="courses.html" class="btn btn-primary">
+                        Explore Courses
+                    </a>
+                </div>
+
+            </section>
+
+            <section class="progress-panel progress-weekly-section">
+
+                <div class="progress-section-heading">
+                    <div>
+                        <h2>Weekly Study Activity</h2>
+                        <p>Completed study time from Monday through Sunday.</p>
+                    </div>
+
+                    <span class="progress-section-count">THIS WEEK</span>
+                </div>
+
+                <div id="weekly-activity-chart" class="progress-weekly-chart"></div>
+
+                <div class="progress-weekly-footer">
+                    <span>Completed study time this week</span>
+                    <strong id="weekly-study-total">0 minutes</strong>
+                </div>
+
+            </section>
+
+            <footer class="progress-page-footer">
+                <p>Keep showing up. Every completed task is progress.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="../js/storage.js" defer></script>
+    <script src="../js/progress.js" defer></script>
+
+</body>
+</html>

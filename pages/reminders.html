@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your StudyFlow study reminders.">
+    <title>Reminders | StudyFlow</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="courses-page reminders-page">
+
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <a href="../index.html" class="sidebar-brand">
+            <span class="brand-mark">S</span>
+            <span>StudyFlow</span>
+        </a>
+
+        <div class="sidebar-section-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link">
+                <span class="nav-icon">▦</span>Dashboard
+            </a>
+            <a href="courses.html" class="sidebar-link">
+                <span class="nav-icon">▤</span>My Courses
+            </a>
+            <a href="tasks.html" class="sidebar-link">
+                <span class="nav-icon">✓</span>Tasks
+            </a>
+            <a href="schedule.html" class="sidebar-link">
+                <span class="nav-icon">◷</span>Study Schedule
+            </a>
+            <a href="progress.html" class="sidebar-link">
+                <span class="nav-icon">▥</span>Progress
+            </a>
+            <a href="reminders.html" class="sidebar-link active">
+                <span class="nav-icon">♧</span>Reminders
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-user">
+                <div class="user-avatar" id="user-avatar">S</div>
+                <div class="sidebar-user-info">
+                    <strong id="sidebar-user-name">Student</strong>
+                    <span>Student account</span>
+                </div>
+            </div>
+
+            <button type="button" class="sidebar-logout" id="logout-button">
+                ↪ Log out
+            </button>
+        </div>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div>
+                <p class="topbar-label">STUDENT WORKSPACE</p>
+                <h1>Reminders</h1>
+            </div>
+
+            <button type="button" class="btn btn-primary" id="add-reminder-button">
+                + New Reminder
+            </button>
+        </header>
+
+        <section class="reminders-intro">
+            <h2>Stay on top of your plans</h2>
+            <p>Keep important deadlines and study activities in sight.</p>
+        </section>
+
+        <section class="reminder-stat-grid">
+            <article class="reminder-stat-card">
+                <span class="reminder-stat-label">Total Reminders</span>
+                <strong id="reminder-total-count">0</strong>
+                <span class="reminder-stat-note">All your reminders</span>
+            </article>
+
+            <article class="reminder-stat-card">
+                <span class="reminder-stat-label">Upcoming</span>
+                <strong id="reminder-upcoming-count">0</strong>
+                <span class="reminder-stat-note">Still waiting</span>
+            </article>
+
+            <article class="reminder-stat-card">
+                <span class="reminder-stat-label">Overdue</span>
+                <strong id="reminder-overdue-count">0</strong>
+                <span class="reminder-stat-note">Need your attention</span>
+            </article>
+
+            <article class="reminder-stat-card">
+                <span class="reminder-stat-label">Completed</span>
+                <strong id="reminder-completed-count">0</strong>
+                <span class="reminder-stat-note">Successfully finished</span>
+            </article>
+        </section>
+
+        <section class="reminders-workspace">
+            <div class="reminders-list-panel">
+                <div class="reminders-list-heading">
+                    <div>
+                        <h2>Your reminders</h2>
+                        <p>Manage your upcoming activities and deadlines.</p>
+                    </div>
+
+                    <button type="button" class="reminder-notification-button"
+                            id="notification-permission-button">
+                        <span aria-hidden="true">♧</span>
+                        <span id="notification-button-label">Enable notifications</span>
+                    </button>
+                </div>
+
+                <div class="reminder-filter-bar">
+                    <button type="button" class="reminder-filter active"
+                            data-filter="all">All</button>
+                    <button type="button" class="reminder-filter"
+                            data-filter="upcoming">Upcoming</button>
+                    <button type="button" class="reminder-filter"
+                            data-filter="overdue">Overdue</button>
+                    <button type="button" class="reminder-filter"
+                            data-filter="completed">Completed</button>
+                </div>
+
+                <div class="reminder-list" id="reminder-list"></div>
+
+                <div class="reminder-empty-state" id="reminder-empty-state" hidden>
+                    <div class="reminder-empty-icon">♧</div>
+                    <h3>No reminders here yet</h3>
+                    <p>Create a reminder to keep track of important study activities.</p>
+                    <button type="button" class="btn btn-primary"
+                            id="empty-add-reminder-button">
+                        Create a reminder
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="reminders-page-footer">
+            <span>StudyFlow</span>
+            <span>Plan your time. Stay consistent. Keep progressing.</span>
+        </footer>
+    </main>
+</div>
+
+<div class="reminder-modal" id="reminder-modal" hidden>
+    <div class="reminder-modal-backdrop" id="reminder-modal-backdrop"></div>
+
+    <section class="reminder-modal-content"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="reminder-form-title">
+
+        <div class="reminder-form-heading">
+            <div>
+                <p class="topbar-label">REMINDER DETAILS</p>
+                <h2 id="reminder-form-title">Create reminder</h2>
+                <p>Add an activity you don't want to forget.</p>
+            </div>
+
+            <button type="button" class="reminder-modal-close"
+                    id="close-reminder-modal" aria-label="Close">
+                &times;
+            </button>
+        </div>
+
+        <form id="reminder-form">
+            <input type="hidden" id="reminder-id">
+
+            <div class="reminder-form-group">
+                <label for="reminder-title">Reminder title</label>
+                <input type="text" id="reminder-title"
+                        placeholder="e.g. Review database notes"
+                        maxlength="100" required>
+            </div>
+
+            <div class="reminder-form-row">
+                <div class="reminder-form-group">
+                    <label for="reminder-type">Reminder type</label>
+                    <select id="reminder-type" required>
+                        <option value="Study">Study session</option>
+                        <option value="Assignment">Assignment</option>
+                        <option value="Exam">Exam</option>
+                        <option value="Deadline">Deadline</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="reminder-form-group">
+                    <label for="reminder-date">Date</label>
+                    <input type="date" id="reminder-date" required>
+                </div>
+            </div>
+
+            <div class="reminder-form-row">
+                <div class="reminder-form-group">
+                    <label for="reminder-time">Time</label>
+                    <input type="time" id="reminder-time" required>
+                </div>
+
+                <div class="reminder-form-group">
+                    <label for="reminder-priority">Priority</label>
+                    <select id="reminder-priority" required>
+                        <option value="Normal">Normal</option>
+                        <option value="High">High</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="reminder-form-group">
+                <label for="reminder-description">Description (optional)</label>
+                <textarea id="reminder-description" rows="3"
+                            maxlength="500"
+                            placeholder="Add a few details..."></textarea>
+            </div>
+
+            <p class="reminder-form-error" id="reminder-form-error"
+                role="alert" hidden></p>
+
+            <div class="reminder-form-actions">
+                <button type="button" class="btn btn-secondary"
+                        id="cancel-reminder-button">Cancel</button>
+                <button type="submit" class="btn btn-primary"
+                        id="save-reminder-button">Save Reminder</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<script src="../js/storage.js" defer></script>
+<script src="../js/reminders.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StudyFlow administrator dashboard.">
+    <title>Admin Dashboard | StudyFlow</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+
+<body class="courses-page admin-page">
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <a href="../index.html" class="sidebar-brand">
+            <span class="brand-mark">S</span>
+            <span>StudyFlow</span>
+        </a>
+
+        <div class="sidebar-section-label">ADMINISTRATION</div>
+
+        <nav class="sidebar-nav">
+            <a href="admin-dashboard.html" class="sidebar-link active">
+                <span class="nav-icon">▦</span>Overview
+            </a>
+            <a href="#student-management" class="sidebar-link">
+                <span class="nav-icon">♙</span>Students
+            </a>
+            <a href="../index.html" class="sidebar-link">
+                <span class="nav-icon">⌂</span>View Website
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-user">
+                <div class="user-avatar" id="admin-avatar">A</div>
+                <div class="sidebar-user-info">
+                    <strong id="admin-name">Administrator</strong>
+                    <span>Admin account</span>
+                </div>
+            </div>
+
+            <button type="button" class="sidebar-logout" id="admin-logout">
+                ↪ Log out
+            </button>
+        </div>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div>
+                <p class="topbar-label">STUDYFLOW ADMINISTRATION</p>
+                <h1>Admin Dashboard</h1>
+            </div>
+
+            <span class="admin-role-badge">
+                <span></span> Administrator
+            </span>
+        </header>
+
+        <section class="admin-intro">
+            <div>
+                <h2>Platform Overview</h2>
+                <p>Monitor student accounts and overall StudyFlow activity.</p>
+            </div>
+            <span class="admin-date" id="admin-current-date"></span>
+        </section>
+
+        <section class="admin-stat-grid">
+            <article class="admin-stat-card">
+                <div class="admin-stat-top">
+                    <span class="admin-stat-icon mint">♙</span>
+                    <span class="admin-stat-caption">Registered users</span>
+                </div>
+                <strong id="admin-total-students">0</strong>
+                <p>Total student accounts</p>
+            </article>
+
+            <article class="admin-stat-card">
+                <div class="admin-stat-top">
+                    <span class="admin-stat-icon purple">▤</span>
+                    <span class="admin-stat-caption">Courses</span>
+                </div>
+                <strong id="admin-total-courses">0</strong>
+                <p>Courses created by students</p>
+            </article>
+
+            <article class="admin-stat-card">
+                <div class="admin-stat-top">
+                    <span class="admin-stat-icon orange">✓</span>
+                    <span class="admin-stat-caption">Tasks</span>
+                </div>
+                <strong id="admin-total-tasks">0</strong>
+                <p>Academic tasks created</p>
+            </article>
+
+            <article class="admin-stat-card">
+                <div class="admin-stat-top">
+                    <span class="admin-stat-icon blue">◷</span>
+                    <span class="admin-stat-caption">Study sessions</span>
+                </div>
+                <strong id="admin-total-sessions">0</strong>
+                <p>Planned and completed sessions</p>
+            </article>
+        </section>
+
+
+        <section class="admin-summary-grid">
+            <article class="admin-panel admin-account-summary">
+                <div class="admin-panel-heading">
+                    <div>
+                        <h3>Student Accounts</h3>
+                        <p>Current account status</p>
+                    </div>
+                </div>
+
+                <div class="admin-account-stats">
+                    <div>
+                        <span class="admin-summary-dot active-dot"></span>
+                        <div>
+                            <strong id="admin-active-students">0</strong>
+                            <span>Active students</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="admin-summary-dot inactive-dot"></span>
+                        <div>
+                            <strong id="admin-inactive-students">0</strong>
+                            <span>Deactivated students</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="admin-panel admin-registration-summary">
+                <div class="admin-panel-heading">
+                    <div>
+                        <h3>Recent Registrations</h3>
+                        <p>Latest student accounts</p>
+                    </div>
+                </div>
+
+                <div id="admin-recent-students" class="admin-recent-list"></div>
+
+                <p id="admin-recent-empty" class="admin-empty-message" hidden>
+                    No student registrations yet.
+                </p>
+            </article>
+        </section>
+
+
+        <section class="admin-panel admin-students-panel" id="student-management">
+            <div class="admin-panel-heading admin-students-heading">
+                <div>
+                    <h3>Student Management</h3>
+                    <p>View, search, and manage student accounts.</p>
+                </div>
+
+                <span class="admin-student-count" id="admin-student-count">
+                    0 students
+                </span>
+            </div>
+
+            <div class="admin-student-controls">
+                <div class="admin-search-box">
+                    <span>⌕</span>
+                    <input
+                        type="search"
+                        id="admin-student-search"
+                        placeholder="Search by name or email..."
+                        aria-label="Search students"
+                    >
+                </div>
+
+                <select id="admin-status-filter" aria-label="Filter students by status">
+                    <option value="all">All students</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Deactivated</option>
+                </select>
+            </div>
+
+            <div class="admin-table-wrapper">
+                <table class="admin-student-table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Email address</th>
+                            <th>Registered</th>
+                            <th>Account status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="admin-student-table-body"></tbody>
+                </table>
+            </div>
+
+            <div id="admin-student-empty" class="admin-empty-state" hidden>
+                <div class="admin-empty-icon">♙</div>
+                <h3>No students found</h3>
+                <p>Try changing your search or status filter.</p>
+            </div>
+
+        </section>
+
+        <footer class="admin-page-footer">
+            <span>StudyFlow Administration</span>
+            <span>Academic management prototype</span>
+        </footer>
+
+    </main>
+</div>
+    <script src="../js/storage.js" defer></script>
+    <script src="../js/admin.js" defer></script>
+
+</body>
+</html>
