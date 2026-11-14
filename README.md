@@ -171,13 +171,11 @@ The application automatically initializes a default administrator account when t
 | Password | `admin1234` |
 
 Log in using these credentials to access the Administrator Dashboard.
-
 ---
 
 ## 7. Data Storage
 
 StudyFlow uses the browser's LocalStorage API to store application data.
-
 The application maintains separate data records for different users using their account identifiers.
 
 Main LocalStorage keys include:
@@ -216,8 +214,6 @@ It is not suitable for production authentication because:
 - There is no server-side authorization or centralized access control.
 
 A production version should use a secure backend, password hashing, server-side authentication, database storage, and proper authorization.
-
-
 ---
 
 ## 9. Future Improvements
